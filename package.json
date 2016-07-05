@@ -1,0 +1,36 @@
+{
+  "name": "game-of-life",
+  "version": "0.0.1",
+  "description": "game-of-life",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack --progress --profile --colors -config --display-error-details --display-cached webpack.config.js"
+  },
+  "keywords": [
+    "react",
+    "webpack",
+    "es6"
+  ],
+  "author": "codelegant <laichuanfeng@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "webpack": "^1.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codelegant/Game-of-Life.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codelegant/Game-of-Life/issues"
+  },
+  "homepage": "https://github.com/codelegant/Game-of-Life#readme"
+}
