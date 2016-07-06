@@ -8,8 +8,5 @@
 import  React from 'react';
 import ReactDOM from 'react-dom';
 import Hello  from "./Hello";
-// var React=require('react');
-// var ReactDOM=require('react-dom');
-// var Hello=require('./Hello');
 
 ReactDOM.render(<Hello className="Nate"/>, document.getElementById('container'));

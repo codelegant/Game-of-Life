@@ -1,13 +1,14 @@
-var path=require('path');
+var path       = require('path');
+var webpack    = require("webpack");
 module.exports = {
-  entry : [
+  entry  : [
     './public/js/entry.js'
   ],
-  output: {
+  output : {
     path    : path.join(__dirname + '/public/'),
     filename: 'bundle.js'
   },
-  module: {
+  module : {
     loaders: [
       {
         test   : /\.jsx?$/,
@@ -17,7 +18,18 @@ module.exports = {
           presets: ["react", "es2015", "stage-0"]
         }
 
+      },
+      {
+        test  : /\.css$/,
+        loader: 'style-loader!css-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  ]
 };

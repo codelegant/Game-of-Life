@@ -5,11 +5,10 @@
  * Date: 2016/7/5
  */
 import React from 'react';
-//   var React=require('react');
 export default class Hello extends React.Component {
-  // constructor(){
-  //   super();
-  // }
+  constructor(){
+    super();
+  }
   render() {
     return <h1>Hello {this.props.name}</h1>
     ;
