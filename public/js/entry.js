@@ -4,9 +4,9 @@
  * Homepage: http://laichuanfeng.com/
  * Date: 2016/7/5
  */
-
+import '../site.css';
 import  React from 'react';
 import ReactDOM from 'react-dom';
-import Hello  from "./Hello";
+import Life  from "./Life";
 
-ReactDOM.render(<Hello className="Nate"/>, document.getElementById('container'));
+ReactDOM.render(<Life/>, document.getElementById('container'));

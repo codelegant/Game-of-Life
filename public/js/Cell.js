@@ -2,15 +2,14 @@
  * Author: 赖传峰
  * Email: laichuanfeng@hotmail.com
  * Homepage: http://laichuanfeng.com/
- * Date: 2016/7/5
+ * Date: 2016/7/6
  */
 import React from 'react';
-export default class Hello extends React.Component {
+export default class Cell extends React.Component {
   constructor(){
     super();
   }
   render() {
-    return <h1>Hello {this.props.name}</h1>
-    ;
+    return <td className={this.props.life}></td>;
   }
 };
