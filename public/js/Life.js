@@ -14,8 +14,8 @@ export default class Life extends React.Component {
     for (let x = 0; x < this.max; x ++) {
       for (let y = 0; y < this.max; y ++) {
         (Math.random() * 10 > 7)
-            ? lifeState[`${x}_${y}`] = 'alive'
-            : lifeState[`${x}_${y}`] = 'death';
+            ? lifeState[`${x}_${y}`] = 1
+            : lifeState[`${x}_${y}`] = 0;
       }
     }
     this.state = lifeState;
@@ -37,19 +37,19 @@ export default class Life extends React.Component {
           for (let y = yIndex - 1; y <= yIndex + 1; y ++) {
             if (y < 0 || y > _this.max - 1) continue;
             if (`${x}_${y}` === key) continue;
-            if (originData[`${x}_${y}`] === 'alive') aliveCount += 1;
+            if (originData[`${x}_${y}`] === 1) aliveCount += 1;
             if (aliveCount > 3) break;
           }
         }
         switch (aliveCount) {
           case 3:
-            updateState[key] = 'alive';
+            updateState[key] = 1;
             break;
           case 2:
             updateState[key] = originData[key];
             break;
           default:
-            updateState[key] = 'death';
+            updateState[key] = 0;
         }
       }
       if (updateState != originData) {

@@ -6,10 +6,11 @@
  */
 import React from 'react';
 export default class Cell extends React.Component {
-  constructor(){
+  constructor() {
     super();
   }
+
   render() {
-    return <td className={this.props.life}></td>;
+    return <td className={this.props.life?'alive':'death'}></td>;
   }
 };

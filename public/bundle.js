@@ -21195,7 +21195,7 @@
 	    var lifeState = {};
 	    for (var x = 0; x < _this2.max; x++) {
 	      for (var y = 0; y < _this2.max; y++) {
-	        Math.random() * 10 > 7 ? lifeState[x + '_' + y] = 'alive' : lifeState[x + '_' + y] = 'death';
+	        Math.random() * 10 > 7 ? lifeState[x + '_' + y] = 1 : lifeState[x + '_' + y] = 0;
 	      }
 	    }
 	    _this2.state = lifeState;
@@ -21220,19 +21220,19 @@
 	            for (var y = yIndex - 1; y <= yIndex + 1; y++) {
 	              if (y < 0 || y > _this.max - 1) continue;
 	              if (x + '_' + y === key) continue;
-	              if (originData[x + '_' + y] === 'alive') aliveCount += 1;
+	              if (originData[x + '_' + y] === 1) aliveCount += 1;
 	              if (aliveCount > 3) break;
 	            }
 	          }
 	          switch (aliveCount) {
 	            case 3:
-	              updateState[key] = 'alive';
+	              updateState[key] = 1;
 	              break;
 	            case 2:
 	              updateState[key] = originData[key];
 	              break;
 	            default:
-	              updateState[key] = 'death';
+	              updateState[key] = 0;
 	          }
 	        }
 	        if (updateState != originData) {
@@ -21317,7 +21317,7 @@
 	  _createClass(Cell, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement('td', { className: this.props.life });
+	      return _react2.default.createElement('td', { className: this.props.life ? 'alive' : 'death' });
 	    }
 	  }]);
 
