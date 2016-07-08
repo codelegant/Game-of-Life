@@ -114,7 +114,7 @@
 
 
 	// module
-	exports.push([module.id, "table {\r\n  margin : 0 auto;\r\n}\r\n\r\ntd {\r\n  width  : 10px;\r\n  height : 10px;\r\n}\r\n\r\ntd.alive {\r\n  background : green;\r\n}\r\ntd.death{\r\n  background: darkgray;\r\n}\r\n", ""]);
+	exports.push([module.id, "table {\r\n  margin : 0 auto;\r\n}\r\n\r\ntd {\r\n  width  : 10px;\r\n  height : 10px;\r\n}\r\n\r\ntd.alive {\r\n  background : green;\r\n}\r\n\r\ntd.death {\r\n  background : darkgray;\r\n}\r\n\r\n.start,.pause {\r\n  padding : 8px;\r\n}\r\n\r\n.pause {\r\n  margin-left : 10px;\r\n}\r\n", ""]);
 
 	// exports
 
@@ -21192,21 +21192,19 @@
 	    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Life).call(this));
 
 	    _this2.max = 40;
-	    var lifeState = {};
-	    for (var x = 0; x < _this2.max; x++) {
-	      for (var y = 0; y < _this2.max; y++) {
-	        Math.random() * 10 > 7 ? lifeState[x + '_' + y] = 1 : lifeState[x + '_' + y] = 0;
-	      }
-	    }
-	    _this2.state = lifeState;
+	    _this2.process = 'pause';
+	    _this2.state = {};
+	    _this2._startHandler = _this2._startHandler.bind(_this2);
+	    _this2._pauseHandler = _this2._pauseHandler.bind(_this2);
+	    _this2._updateState = _this2._updateState.bind(_this2);
 	    return _this2;
 	  }
 
 	  _createClass(Life, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
+	    key: '_updateState',
+	    value: function _updateState() {
 	      var _this = this;
-	      setTimeout(function update() {
+	      return setTimeout(function update() {
 	        var updateState = {};
 	        var originData = _this.state;
 	        for (var key in originData) {
@@ -21235,17 +21233,44 @@
 	              updateState[key] = 0;
 	          }
 	        }
-	        if (updateState != originData) {
+	        if (updateState != originData && _this.process === 'update') {
 	          _this.setState(updateState);
 	          setTimeout(update, 0);
 	        }
-	      }, 0);
+	      }(), 0);
+	    }
+	  }, {
+	    key: '_startHandler',
+	    value: function _startHandler(event) {
+	      if (this.process === 'update') return;
+	      this.process = 'update';
+	      if (this.state['0_0'] != undefined) {
+	        // event.target.disabled = true;
+	        // document.getElementById('btn_pause').disabled = false;
+	      } else {
+	        var lifeState = {};
+	        for (var x = 0; x < this.max; x++) {
+	          for (var y = 0; y < this.max; y++) {
+	            Math.random() * 10 > 7 ? lifeState[x + '_' + y] = 1 : lifeState[x + '_' + y] = 0;
+	          }
+	        }
+	        this.setState(lifeState);
+	      }
+	      this._updateState();
+	    }
+	  }, {
+	    key: '_pauseHandler',
+	    value: function _pauseHandler(event) {
+	      console.log(this.process);
+	      if (this.process === 'pause') return;
+	      this.process = 'pause';
+	      // event.target.disabled = true;
+	      // document.getElementById('btn_start').disabled = false;
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var cell = [];
-	      /*下面的代码如果用闭包包裹起来*/
 	      for (var x = 0; x < this.max; x++) {
 	        var cellRow = [];
 	        for (var y = 0; y < this.max; y++) {
@@ -21264,6 +21289,28 @@
 	          'tbody',
 	          null,
 	          cell
+	        ),
+	        _react2.default.createElement(
+	          'tfoot',
+	          null,
+	          _react2.default.createElement(
+	            'tr',
+	            null,
+	            _react2.default.createElement(
+	              'td',
+	              { colSpan: this.max },
+	              _react2.default.createElement(
+	                'button',
+	                { id: 'btn_start', className: 'start', type: 'button', onClick: this._startHandler },
+	                'Start'
+	              ),
+	              _react2.default.createElement(
+	                'button',
+	                { id: 'btn_pause', className: 'pause', type: 'button', onClick: this._pauseHandler },
+	                'Pause'
+	              )
+	            )
+	          )
 	        )
 	      );
 	    }

@@ -10,6 +10,15 @@ td {
 td.alive {
   background : green;
 }
-td.death{
-  background: darkgray;
+
+td.death {
+  background : darkgray;
+}
+
+.start,.pause {
+  padding : 8px;
+}
+
+.pause {
+  margin-left : 10px;
 }
