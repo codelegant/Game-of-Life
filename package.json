@@ -4,7 +4,8 @@
   "description": "game-of-life",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack --progress --profile --colors --display-error-details --display-cached"
+    "webpack": "webpack --progress --profile --colors --display-error-details --display-cached",
+    "webpack_prod": "set PROD_ENV=1 & webpack --progress --profile --colors --display-error-details --display-cached"
   },
   "keywords": [
     "react",
