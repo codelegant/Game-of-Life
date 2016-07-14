@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require("webpack");
 var process = require('process');
 var PROD = JSON.parse(process.env.PROD_ENV || 0);
-process.argv
 module.exports = {
   entry: [
     './public/js/entry.js'
