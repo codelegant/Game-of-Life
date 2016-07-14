@@ -1,24 +1,25 @@
 table {
-  margin : 0 auto;
+    margin: 0 auto;
+    border-collapse: separate; /*collapse | separate*/
 }
 
 td {
-  width  : 10px;
-  height : 10px;
+    width: 5px;
+    height: 5px;
 }
 
 td.alive {
-  background : green;
+    background: green;
 }
 
 td.death {
-  background : darkgray;
+    background: #ddd;
 }
 
-.start,.pause {
-  padding : 8px;
+.start, .pause {
+    padding: 8px;
 }
 
 .pause {
-  margin-left : 10px;
+    margin-left: 10px;
 }
