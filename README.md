@@ -31,5 +31,14 @@
     port: 3000,
   }
 ```
+- `only-dev-server`与`dev-server`的区别
+简单来讲，在某些需要刷新浏览器的情况下，`only-dev-server`提示刷新，而`dev-server`自动帮你刷新
+``` javascript
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './public/js/entry'
+  ],
+```
 ## webpack 构建
 - 开发调试的构建使用 `npm run dev`，生产环境的构建使用`npm run deploy`
