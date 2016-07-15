@@ -6,7 +6,7 @@ module.exports = {
   entry: [
     './public/js/entry.js'
   ],
-  devtool: 'source-map',
+  // devtool: 'source-map',
   output: {
     path: path.join(__dirname + '/public/'),
     filename: PROD ? 'bundle.min.js' : 'bundle.js'//[name].js
@@ -15,7 +15,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        loader: 'babel',// short for babel-loader
         exclude: /node_modules/,
         query: {
           presets: ["react", "es2015", "stage-0"]
@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        loader: 'style!css'// right-to-left and the loader are separated by '!'. Short for style-loader!css-loader
       }
     ]
   },

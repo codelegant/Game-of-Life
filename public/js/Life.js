@@ -112,7 +112,7 @@ export default class Life extends React.Component {
       <tfoot>
       <tr>
         <td colSpan={max}>
-          <button id="btn_start" className="start" type="button" onClick={this._startHandler}
+          <button className="start" type="button" onClick={this._startHandler}
                   disabled={this.state.btnState}>Start
           </button>
           <button className="pause" type="button" onClick={this._pauseHandler}
