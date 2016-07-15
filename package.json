@@ -4,8 +4,8 @@
   "description": "game-of-life",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress  --profile --colors --display-error-details --display-cached",
-    "deploy": " webpack --progress --profile --colors --display-error-details --display-cached --watch --config webpack.deploy.config.js"
+    "dev": "webpack-dev-server",
+    "deploy": "webpack --progress --profile --colors --display-error-details --display-cached --watch --config webpack.deploy.config.js"
   },
   "keywords": [
     "react",

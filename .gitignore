@@ -16,3 +16,5 @@ jspm_packages
 .npm
 .node_repl_history
 .idea
+*.hot-update.json
+*.hot-update.js

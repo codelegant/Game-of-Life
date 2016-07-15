@@ -59,5 +59,8 @@
     "no-new-symbol": [2],
     "no-this-before-super": [2],
     "no-class-assign": [2]
-  }
+  },
+  "plugins":[
+    "react"
+  ]
 }

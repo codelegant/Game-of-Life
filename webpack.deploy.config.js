@@ -2,9 +2,8 @@ var path = require('path');
 var webpack = require("webpack");
 module.exports = {
   entry: [
-    './public/js/entry.js'
+    './public/js/entry'
   ],
-  // devtool: 'eval',
   output: {
     path: path.join(__dirname + '/public/'),
     filename: 'bundle.min.js'//[name].js
