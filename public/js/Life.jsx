@@ -9,17 +9,17 @@ import Cell from './Cell';
 export default class Life extends React.Component {
   constructor() {
     super();
-    this.max = 80;
+    this.max = 40;
     this.state = {
-      life: {},
+      life    : {},
       btnState: 0
     };
-    this._startHandler = this._startHandler.bind(this);
-    this._pauseHandler = this._pauseHandler.bind(this);
-    this._updateState = this._updateState.bind(this);
+    this.startHandler = this.startHandler.bind(this);
+    this.pauseHandler = this.pauseHandler.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
-  _updateState() {
+  updateState() {
     let _this = this;
     return setTimeout((function update() {
       let updateState = {};
@@ -30,10 +30,10 @@ export default class Life extends React.Component {
         let yIndex = Number(keyXY[1]);
         let aliveCount = 0;
         let max = _this.max;
-        for (let x = xIndex - 1; x <= xIndex + 1; x++) {
+        for (let x = xIndex - 1; x <= xIndex + 1; x ++) {
           if (x < 0 || x > max - 1) continue;
           if (aliveCount > 3) break;
-          for (let y = yIndex - 1; y <= yIndex + 1; y++) {
+          for (let y = yIndex - 1; y <= yIndex + 1; y ++) {
             if (y < 0 || y > max - 1) continue;
             if (`${x}_${y}` === key) continue;
             if (originData[`${x}_${y}`] === 1) aliveCount += 1;
@@ -54,43 +54,43 @@ export default class Life extends React.Component {
       if (updateState != originData && _this.state.btnState) {
         _this.setState({
           life: updateState
-        }, function () {
+        }, function() {
           setTimeout(update, 0);
         });
       }
     })(), 0);
   }
 
-  _startHandler() {
+  startHandler() {
     if (this.state.btnState) return;
     if (this.state.life['0_0'] != undefined) {
       this.setState({
         btnState: 1
       }, ()=> {
-        this._updateState();
+        this.updateState();
       });
     } else {
       let lifeState = {};
-      for (let x = 0; x < this.max; x++) {
-        for (let y = 0; y < this.max; y++) {
+      for (let x = 0; x < this.max; x ++) {
+        for (let y = 0; y < this.max; y ++) {
           (Math.random() * 10 > 7)
               ? lifeState[`${x}_${y}`] = 1
               : lifeState[`${x}_${y}`] = 0;
         }
       }
       this.setState({
-        life: lifeState,
+        life    : lifeState,
         btnState: 1
       }, ()=> {
         //目前只能在回调中获取 this.state.life 值
-        this._updateState();
+        this.updateState();
       });
       //外部无法获取 this.state.life 的值
     }
   }
 
-  _pauseHandler() {
-    if (!this.state.btnState) return;
+  pauseHandler() {
+    if (! this.state.btnState) return;
     this.setState({
       btnState: 0
     });
@@ -100,28 +100,33 @@ export default class Life extends React.Component {
     let cell = [];
     let life = this.state.life;
     let max = this.max;
-    for (let x = 0; x < max; x++) {
+    for (let x = 0; x < max; x ++) {
       let cellRow = [];
-      for (let y = 0; y < max; y++) {
-        cellRow.push(<Cell key={`${x}_${y}`} life={life[`${x}_${y}`]}/>);
+      for (let y = 0; y < max; y ++) {
+        cellRow.push(<Cell key={`${x}_${y}`}
+                           life={life[`${x}_${y}`]}/>);
       }
       cell.push(<tr key={`${x}`}>{cellRow}</tr>);
     }
-    return <table>
+    return (<table>
       <tbody>{cell}</tbody>
       <tfoot>
       <tr>
         <td colSpan={max}>
-          <button className="start" type="button" onClick={this._startHandler}
+          <button className="start"
+                  type="button"
+                  onClick={this.startHandler}
                   disabled={this.state.btnState}>Start
           </button>
-          <button className="pause" type="button" onClick={this._pauseHandler}
-                  disabled={!this.state.btnState}>
+          <button className="pause"
+                  type="button"
+                  onClick={this.pauseHandler}
+                  disabled={! this.state.btnState}>
             Pause
           </button>
         </td>
       </tr>
       </tfoot>
-    </table>;
+    </table>);
   }
 };
