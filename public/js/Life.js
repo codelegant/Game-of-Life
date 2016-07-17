@@ -6,6 +6,9 @@
  */
 import React from 'react';
 import Cell from './Cell';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import shallowCompare from 'react-addons-shallow-compare';
+
 export default class Life extends React.Component {
   constructor() {
     super();
@@ -17,6 +20,11 @@ export default class Life extends React.Component {
     this.startHandler = this.startHandler.bind(this);
     this.pauseHandler = this.pauseHandler.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
   }
 
   updateState() {
@@ -54,7 +62,7 @@ export default class Life extends React.Component {
       if (updateState != originData && _this.state.btnState) {
         _this.setState({
           life: updateState
-        }, () =>{
+        }, () => {
           setTimeout(update, 0);
         });
       }
@@ -104,24 +112,24 @@ export default class Life extends React.Component {
       const cellRow = [];
       for (let y = 0; y < max; y ++) {
         cellRow.push(<Cell key={`${x}_${y}`}
-                           life={life[`${x}_${y}`]}/>);
+                           life={life[`${x}_${y}`]} />);
       }
-      cell.push(<tr key={`${x}`}>{cellRow}</tr>);
+      cell.push(<tr key={`${x}`} >{cellRow}</tr>);
     }
     return (<table>
       <tbody>{cell}</tbody>
       <tfoot>
       <tr>
-        <td colSpan={max}>
+        <td colSpan={max} >
           <button className="start"
                   type="button"
                   onClick={this.startHandler}
-                  disabled={this.state.btnState}>Start
+                  disabled={this.state.btnState} >Start
           </button>
           <button className="pause"
                   type="button"
                   onClick={this.pauseHandler}
-                  disabled={! this.state.btnState}>
+                  disabled={! this.state.btnState} >
             Pause
           </button>
         </td>
