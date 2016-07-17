@@ -22,7 +22,7 @@ export default class Life extends React.Component {
   updateState() {
     const _this = this;
     return setTimeout((function update() {
-      let updateState = {};
+      const updateState = {};
       const originData = _this.state.life;
       for (const key in originData) {
         const keyXY = key.split('_');
@@ -70,7 +70,7 @@ export default class Life extends React.Component {
         this.updateState();
       });
     } else {
-      let lifeState = {};
+      const lifeState = {};
       for (let x = 0; x < this.max; x ++) {
         for (let y = 0; y < this.max; y ++) {
           (Math.random() * 10 > 7)
@@ -97,11 +97,11 @@ export default class Life extends React.Component {
   }
 
   render() {
-    let cell = [];
+    const cell = [];
     const life = this.state.life;
     const max = this.max;
     for (let x = 0; x < max; x ++) {
-      let cellRow = [];
+      const cellRow = [];
       for (let y = 0; y < max; y ++) {
         cellRow.push(<Cell key={`${x}_${y}`}
                            life={life[`${x}_${y}`]}/>);
