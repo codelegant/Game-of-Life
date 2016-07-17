@@ -20,16 +20,16 @@ export default class Life extends React.Component {
   }
 
   updateState() {
-    let _this = this;
+    const _this = this;
     return setTimeout((function update() {
       let updateState = {};
-      let originData = _this.state.life;
-      for (let key in originData) {
-        let keyXY = key.split('_');
-        let xIndex = Number(keyXY[0]);
-        let yIndex = Number(keyXY[1]);
+      const originData = _this.state.life;
+      for (const key in originData) {
+        const keyXY = key.split('_');
+        const xIndex = Number(keyXY[0]);
+        const yIndex = Number(keyXY[1]);
         let aliveCount = 0;
-        let max = _this.max;
+        const max = _this.max;
         for (let x = xIndex - 1; x <= xIndex + 1; x ++) {
           if (x < 0 || x > max - 1) continue;
           if (aliveCount > 3) break;
@@ -54,11 +54,11 @@ export default class Life extends React.Component {
       if (updateState != originData && _this.state.btnState) {
         _this.setState({
           life: updateState
-        }, function() {
+        }, () =>{
           setTimeout(update, 0);
         });
       }
-    })(), 0);
+    }()), 0);
   }
 
   startHandler() {
@@ -98,8 +98,8 @@ export default class Life extends React.Component {
 
   render() {
     let cell = [];
-    let life = this.state.life;
-    let max = this.max;
+    const life = this.state.life;
+    const max = this.max;
     for (let x = 0; x < max; x ++) {
       let cellRow = [];
       for (let y = 0; y < max; y ++) {

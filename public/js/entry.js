@@ -5,8 +5,8 @@
  * Date: 2016/7/5
  */
 import '../site.css';
-import  React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Life  from "./Life";
+import Life from './Life';
 
 ReactDOM.render(<Life />, document.getElementById('container'));

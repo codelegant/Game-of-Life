@@ -13,4 +13,4 @@ export default class Cell extends React.Component {
   render() {
     return <td className={this.props.life?'alive':'death'}></td>;
   }
-};
+}
